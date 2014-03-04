@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% load url from future %}
+{% load i18n %}
+{% block title %}{% trans "My Trigger" %} - {{ user.username }} - {{ current_site.name }}{% endblock %}
+{% block content %}
+    <div class="span12" id="trigger-content">
+        <h3>{% trans 'Edition of your trigger' %} {{ context.description }}</h3>
+        <form method="post" class="form-horizontal" action="">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+            <div class="control-group">
+                <label class="control-label" for="id_tag">{% trans 'Server' %}</label>
+                <div class="controls">
+                {{ form.server.errors }}
+                {{ form.server }}
+                </div>
+            </div> 
+            <div class="control-group">
+                <label class="control-label" for="id_tag">{% trans 'Port' %}</label>
+                <div class="controls">
+                {{ form.port.errors }}
+                {{ form.port }}
+                </div>
+            </div>             
+            <div class="control-group">
+                <label class="control-label" for="id_notebook">{% trans 'Channel' %}</label>
+                <div class="controls">
+                {{ form.channel.errors }}
+                {{ form.channel }}
+                </div>
+            </div>            
+            <div class="control-group">
+                <label class="control-label" for="id_notebook">{% trans 'Channel Key' %}</label>
+                <div class="controls">
+                {{ form.channel_key.errors }}
+                {{ form.channel_key }}
+                </div>
+            </div>            
+            <div class="control-group">
+                <label class="control-label" for="id_notebook">{% trans 'Nickname' %}</label>
+                <div class="controls">
+                {{ form.nickname.errors }}
+                {{ form.nickname }}
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="hidden" name="trigger_id" value="{{ trigger_id }}" />
+                <button class="btn btn-primary">{% trans "Save it" %}</button>
+            </div>
+        </form>
+    </div> 
+{% endblock %}
